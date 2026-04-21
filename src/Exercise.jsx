@@ -11,20 +11,20 @@ function Exercise() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           <UserCard 
             name="adri" 
-            email="adri@jokowi.com"
+            email="adri@gmail.com"
             street="jl. proxima centauri. 1"
             city="alpha centauri b"
             />
           <UserCard 
-            name="jokowi" 
-            email="jokowi@jokowi.com"
+            name="ananto" 
+            email="ananto@gmail.com"
             street="jl. jokowi no. 1"
             city="beta centauri b"
             />
           <UserCard 
-            name="megawati" 
-            email="megawati@jokowi.com"
-            street="jl. megawati no. 1"
+            name="praroro" 
+            email="praroro@sawit.com"
+            street="jl. sawit no. 1"
             city="gamma centauri b"
             />
         </div>

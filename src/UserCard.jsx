@@ -5,10 +5,9 @@ function UserCard(props) {
     const [clicked, setClicked] = useState(false);
 
       // Fungsi handler
-  function handleClick() {
-    setClicked(true);
-  }
-
+    function handleClick() {
+      setClicked(true);
+    }
   return (
     <div className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow">
       <h2 className="text-xl font-semibold text-gray-800 mb-2">{name}</h2>
