@@ -2,14 +2,21 @@ import React, { useContext, useState } from "react";
 import Logo from "../Elements/Logo";
 import Input from "../Elements/Input";
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
 import Icon from "../Elements/Icon";
 import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext";
 import { AuthContext } from "../../context/authContext";
+import { ModeContext } from "../../context/modeContext";
 import { logoutService } from "../../services/authService";
+
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function MainLayout(props) {
   const { children } = props;
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
@@ -20,6 +27,7 @@ function MainLayout(props) {
     ];
 
     const { theme, setTheme } = useContext(ThemeContext);
+    const { mode, setMode } = useContext(ModeContext);
   
   const menu = [
     { id: 1, name: "Overview", icon: <Icon.Overview />, link: "/" },
@@ -34,19 +42,28 @@ function MainLayout(props) {
     const { user, logout } = useContext(AuthContext);
 
     const handleLogout = async () => {
+        setIsLoggingOut(true);
         try {
-        await logoutService();
-        logout(); 
+            await logoutService();
+            logout(); 
         } catch (err) {
-        console.error(err);
-        if (err.status === 401) {
-            logout();
-        }
+            console.error(err);
+            if (err.status === 401) {
+                logout();
+            }
+        } finally {
+            setIsLoggingOut(false);
         }
     };
  
   return (
     <>
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoggingOut}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
 	    <div className={`flex min-h-screen ${theme.name}`} >
 			<aside className="bg-defaultBlack w-28 sm:w-63 text-special-bg2 flex flex-col justify-between px-7 py-12">
                 <div>
@@ -83,6 +100,12 @@ function MainLayout(props) {
                         onClick={() => setTheme(t)}
                     ></div>
                     ))}
+                    <div
+                        className="w-6 h-6 rounded-md cursor-pointer mb-2 flex items-center justify-center ms-2"
+                        onClick={() => setMode(mode === "light" ? "dark" : "light")}
+                    >
+                        {mode === "light" ? <DarkModeIcon fontSize="small" /> : <LightModeIcon fontSize="small" />}
+                    </div>
                 </div>
                  </div>
                 <div>

@@ -10,6 +10,7 @@ function CardBalance(props) {
   return (
     <>
       <Card
+        title="Total Balance"
 				desc={
 					<DotsMobileStepper
 	          data={data.map((item) => (

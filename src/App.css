@@ -46,3 +46,34 @@ html {
 .theme-brown {
   --color-primary: #8b4513;
 }
+
+.dark {
+  --color-defaultBlack: #1e1e1e;
+  --color-gray-01: #e0e0e0;
+  --color-gray-02: #d1d1d1;
+  --color-gray-03: #9f9f9f;
+  --color-gray-05: #333333;
+  --color-gray-06: #2a2a2a;
+  --color-special-bg: rgba(255, 255, 255, 0.05);
+  --color-special-bg2: rgba(255, 255, 255, 0.7);
+  --color-special-bg3: rgba(255, 255, 255, 0.08);
+  --color-special-mainBg: #282828;
+  color: white;
+}
+
+.dark .bg-white {
+  background-color: #333333;
+  color: white;
+}
+
+.dark .text-black {
+  color: white;
+}
+
+.dark .border-b-special-bg {
+  border-color: #333333;
+}
+
+.dark .bg-defaultBlack {
+  background-color: #1e1e1e;
+}

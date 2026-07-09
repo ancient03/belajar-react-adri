@@ -5,9 +5,9 @@ import CompositionExample from "../Elements/CompositionExample";
 import CircularProgress from '@mui/material/CircularProgress';
 
 function CardGoal(props) {
-  const { data } = props;
+  const { data, isLoading } = props;
 
-  const chartValue = (data.present_Amount / data.target_Amount) * 100;
+  const chartValue = data?.target_Amount ? (data.present_Amount / data.target_Amount) * 100 : 0;
 
   const chartData = (
 			<div className="p-2">
@@ -62,7 +62,7 @@ function CardGoal(props) {
       <Card
         title="Goals"
        	desc={
-			Object.keys(data).length === 0 ? (
+			isLoading ? (
 				<div className="flex flex-col justify-center items-center h-full text-primary">
 					<CircularProgress color="inherit" size={50} enableTrackSlot />
 					Loading Data
